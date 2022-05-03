@@ -35,7 +35,7 @@
 | 木子的博客         | https://blog.k8s.li/atom.xml          | https://blog.k8s.li         |
 | c0sMx              | https://www.c0smx.com/feed/           | https://www.c0smx.com       |
 | 云游君的小站       | https://www.yunyoujun.cn/atom.xml     | https://www.yunyoujun.cn    |
-| 猫鱼的小站         | https://2cat.net/?feed=rss2           | http://2cat.                |
+| 猫鱼的小站         | https://2cat.net/?feed=rss2           | http://2cat.net             |
 | MiaoTony's 小窝    | https://miaotony.xyz/atom.xml         | https://miaotony.xyz        |
 | Timegg             | https://timegg.top/index.xml          | https://timegg.top/         |
 | Aengus Blog        | https://www.aengus.top/feed           | https://www.aengus.top/     |
@@ -47,7 +47,6 @@
 | Cyris              | https://sound.cyris.moe/atom.xml      | https://cyris.moe/          |
 | Dejavu's Blog      | https://www.dejavu.moe/index.xml      | https://www.dejavu.moe      |
 | 世说新语           | https://www.wangyurui.top/feed.xml    | https://www.wangyurui.top   |
-| 送报少年           | https://blog.skywt.cn/feed/           | https://okarin.cn           |
 | itsNekoDeng        | https://dyfa.top/atom.xml             | https://dyfa.top/           |
 | LarryZhao          | http://feeds.feedburner.com/larryzhao | https://larryzhao.com/      |
 | SkyWT              | https://blog.skywt.cn/feed            | https://skywt.cn/           |

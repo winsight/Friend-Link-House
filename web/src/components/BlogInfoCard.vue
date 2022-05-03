@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <a :key="props.htmlUrl" :href="props.htmlUrl">
+  <a :key="props.htmlUrl" :href="props.htmlUrl" target="_blank">
     <p class="title">{{ props.title }}</p>
     <span
       style="display: -webkit-box; font-size: 13px; height: 18px; line-height: 18px; color: #999; word-break: break-all; text-overflow: ellipsis; overflow: hidden; -webkit-line-clamp: 1; -webkit-box-orient: vertical;"
@@ -37,8 +37,8 @@ a {
 }
 
 .title {
-  font-size: large;
-  font-weight: bolder;
+  /* font-size: large; */
+  /* font-weight: bolder; */
   margin-bottom: 0px;
 }
 

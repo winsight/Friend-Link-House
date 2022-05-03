@@ -1,10 +1,53 @@
 <opml version="2.0">
   <head>
-    <title>NJU-LUG Blogroll</title>
+    <title>idealclover Blogroll</title>
   </head>
   <body>
 
   <outline title="Idealclover's Blog" xmlUrl="https://idealclover.top/feed" htmlUrl="https://idealclover.top/" />
+  <outline title="ZGQ's Blog" xmlUrl="https://blog.izgq.net/feed" htmlUrl="https://blog.izgq.net/" />
+  <outline title="bus1996" xmlUrl="https://bus1996.me/feed" htmlUrl="https://bus1996.me/" />
+  <outline title="HiKi" xmlUrl="https://www.aneureka.cn/atom.xml" htmlUrl="https://www.aneureka.cn/" />
+  <outline title="lizhihao6" xmlUrl="https://lizhihao6.online/feed" htmlUrl="https://lizhihao6.online/" />
+  <outline title="DIYGod" xmlUrl="https://diygod.me/atom.xml" htmlUrl="https://diygod.me/" />
+  <outline title="Tianyun Zhang" xmlUrl="https://doowzs.com/rss.xml" htmlUrl="https://doowzs.com/" />
+  <outline title="鹏鹏" xmlUrl="https://blog.chper.cn/feed/" htmlUrl="http://blog.chper.cn/" />
+  <outline title="冰凌胧月的小窝" xmlUrl="https://imiku.me/index.xml" htmlUrl="https://imiku.me" />
+  <outline title="SimpleZero" xmlUrl="https://mikuac.com/feed/" htmlUrl="https://mikuac.com" />
+  <outline title="VicBlog" xmlUrl="https://ddadaal.me/rss.xml" htmlUrl="https://ddadaal.me/" />
+  <outline title="Literature" xmlUrl="https://lizhihao6.online/feed" htmlUrl="https://www.literature.hk" />
+  <outline title="青空之蓝" xmlUrl="https://blog.ixk.me/rss.xml" htmlUrl="https://www.ixk.me" />
+  <outline title="樱花庄的白猫" xmlUrl="https://2heng.xin/feed" htmlUrl="https://2heng.xin" />
+  <outline title="辣椒の酱" xmlUrl="https://removeif.github.io/atom.xml" htmlUrl="https://removeif.github.io/" />
+  <outline title="Domon" xmlUrl="https://www.domon.cn/rss/" htmlUrl="https://www.domon.cn" />
+  <outline title="SangSir" xmlUrl="https://sangsir.com/feed" htmlUrl="https://sangsir.com/" />
+  <outline title="恶魔菌の记事簿" xmlUrl="https://meow3.family.blog/feed/" htmlUrl="https://meow3.family.blog/" />
+  <outline title="蓝小柠的博客" xmlUrl="https://www.bleshi.com/feed/" htmlUrl="https://www.bleshi.com/" />
+  <outline title="宇宙よりも遠い場所" xmlUrl="https://kirainmoe.com/index.xml" htmlUrl="https://kirainmoe.com/" />
+  <outline title="beyondstars" xmlUrl="https://exploro.one/feed/atom" htmlUrl="https://beyondstars.xyz/" />
+  <outline title="Sukka" xmlUrl="https://blog.skk.moe/rss.xml" htmlUrl="https://skk.moe/" />
+  <outline title="fengkx" xmlUrl="https://www.fengkx.top/atom.xml" htmlUrl="https://www.fengkx.top/" />
+  <outline title="JosePhilo" xmlUrl="https://josephilo.com/feed/" htmlUrl="https://josephilo.com" />
+  <outline title="ChrAlpha 的幻想乡" xmlUrl="https://blog.ichr.me/atom.xml" htmlUrl="https://chralpha.com" />
+  <outline title="Spencer Woo" xmlUrl="https://spencerwoo.com/feed" htmlUrl="https://spencerwoo.com/" />
+  <outline title="木子的博客" xmlUrl="https://blog.k8s.li/atom.xml" htmlUrl="https://blog.k8s.li" />
+  <outline title="c0sMx" xmlUrl="https://www.c0smx.com/feed/" htmlUrl="https://www.c0smx.com" />
+  <outline title="云游君的小站" xmlUrl="https://www.yunyoujun.cn/atom.xml" htmlUrl="https://www.yunyoujun.cn" />
+  <outline title="猫鱼的小站" xmlUrl="https://2cat.net/?feed=rss2" htmlUrl="http://2cat.net" />
+  <outline title="MiaoTony's 小窝" xmlUrl="https://miaotony.xyz/atom.xml" htmlUrl="https://miaotony.xyz" />
+  <outline title="Timegg" xmlUrl="https://timegg.top/index.xml" htmlUrl="https://timegg.top/" />
+  <outline title="Aengus Blog" xmlUrl="https://www.aengus.top/feed" htmlUrl="https://www.aengus.top/" />
+  <outline title="klaus & laura" xmlUrl="https://klauslaura.cn/feed" htmlUrl="https://klauslaura.cn" />
+  <outline title="Orangex4" xmlUrl="https://orangex4.cool/atom.xml" htmlUrl="https://orangex4.cool/" />
+  <outline title="小丁的个人博客" xmlUrl="https://tding.top/atom.xml" htmlUrl="https://tding.top/" />
+  <outline title="不鉴的安全屋" xmlUrl="https://ryushane.com/index.php/feed/" htmlUrl="https://ryushane.com/" />
+  <outline title="南雍随笔" xmlUrl="https://ydjsir.com.cn/atom.xml" htmlUrl="https://ydjsir.com.cn" />
+  <outline title="Cyris" xmlUrl="https://sound.cyris.moe/atom.xml" htmlUrl="https://cyris.moe/" />
+  <outline title="Dejavu's Blog" xmlUrl="https://www.dejavu.moe/index.xml" htmlUrl="https://www.dejavu.moe" />
+  <outline title="世说新语" xmlUrl="https://www.wangyurui.top/feed.xml" htmlUrl="https://www.wangyurui.top" />
+  <outline title="itsNekoDeng" xmlUrl="https://dyfa.top/atom.xml" htmlUrl="https://dyfa.top/" />
+  <outline title="LarryZhao" xmlUrl="http://feeds.feedburner.com/larryzhao" htmlUrl="https://larryzhao.com/" />
+  <outline title="SkyWT" xmlUrl="https://blog.skywt.cn/feed" htmlUrl="https://skywt.cn/" />
 
   </body>
 </opml>
