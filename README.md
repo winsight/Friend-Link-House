@@ -4,6 +4,8 @@
 
 [预览链接 blogroll.icl.moe](https://blogroll.icl.moe/)
 
+![](https://s2.loli.net/2022/05/04/KTSp2DoxMEtCZWu.png)
+
 > 仅收录友链博客文章，不代表翠翠本人观点
 
 ## 这是什么
