@@ -92,6 +92,7 @@ export default {
   position: relative;
   margin-left: 1rem;
   margin-top: 1rem;
+  margin-right: 1rem;
 }
 
 .timeline:before {
