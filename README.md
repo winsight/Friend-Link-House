@@ -16,7 +16,7 @@
 
 看了下，原项目的原理是通过 GitHub Actions 每天两次对列表进行爬取，生成出对应的静态网站并更新到 cloudflare workers 上，也是很巧妙了。
 
-代码很强，傻翠就是狗尾续貂改了个小样式就拿来用了。
+代码很强，傻翠就是狗尾续貂改了个小样式就拿来用了~ [预览链接 blogroll.icl.moe](https://blogroll.icl.moe/)
 
 ## 如何使用
 
