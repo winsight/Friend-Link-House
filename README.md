@@ -4,6 +4,8 @@
 
 [预览链接 blogroll.icl.moe](https://blogroll.icl.moe/)
 
+> 仅收录友链博客文章，不代表翠翠本人观点
+
 ## 这是什么
 
 因为自己在经营着 [个人网站](https://idealclover.top) ~~别骂了别骂了 会更新的~~ 所以也认识了一些有自己独立博客的校友朋友以及网络小伙伴们。
