@@ -51,7 +51,9 @@ import opmlJson from "./assets/opml.json";
                 index != dataJson.length - 1 &&
                 item.pubDateMM != dataJson[index + 1].pubDateMM
               "
-              >{{ dataJson[index + 1].pubDateYY }}年{{ dataJson[index + 1].pubDateMM }}月</time
+              >{{ dataJson[index + 1].pubDateYY }}年{{
+                dataJson[index + 1].pubDateMM
+              }}月</time
             >
           </div>
         </section>
@@ -61,6 +63,7 @@ import opmlJson from "./assets/opml.json";
     <aside>
       <div id="sidebar">
         <div id="sidebar-content">
+          <div class="info">收录友链博客文章，不代表翠翠本人观点</div>
           <template v-for="item in opmlJson">
             <BlogInfoCard :props="item" />
           </template>
@@ -181,5 +184,9 @@ export default {
   color: grey;
   margin-right: 1.5rem;
   float: right;
+}
+
+.info {
+  color: grey
 }
 </style>
