@@ -96,12 +96,14 @@ fs.writeFileSync(opmlXmlPath, opmlXmlContent, { encoding: "utf-8" });
   const curDate = new Date();
   const dataJsonSliced = dataJson.filter((item) => item.pubDate <= curDate);
 
-  const dataJsonSlicedForWeb = dataJsonSliced
-    .slice(0, Math.min(maxDataJsonItemsNumberForWeb, dataJson.length))
-    .map(function (e) {
-      delete e.summary;
-      return e;
-    });
+  let dataJsonSlicedForWeb = dataJsonSliced.slice(
+    0,
+    Math.min(maxDataJsonItemsNumberForWeb, dataJson.length)
+  );
+  dataJsonSlicedForWeb = dataJsonSlicedForWeb.map(function (e) {
+    delete e.summary;
+    return e;
+  });
   const dataJsonSlicedForRSS = dataJsonSliced.slice(
     0,
     Math.min(maxDataJsonItemsNumberForRSS, dataJson.length)
