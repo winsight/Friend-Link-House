@@ -6,13 +6,29 @@ const parser = new Parser();
 // 引入 RSS 生成器
 const RSS = require("rss");
 
-// 相关配置
+// TODO: 需要重点关注和修改的配置
 const opmlXmlContentTitle = "idealclover Blogroll";
+const maxDataJsonItemsNumberForWeb = 100; // 保存前 100 项
+const maxDataJsonItemsNumberForRSS = 40; // 对RSS保存前 40 项
+var feed = new RSS({
+  title: "idealclover 友链屋",
+  description: "翠翠和他的朋友们的blog，不代表翠翠本人观点",
+  feed_url: "https://blogroll.icl.moe/rss.xml",
+  site_url: "https://blogroll.icl.moe/",
+  image_url: "https://blogroll.icl.moe/assets/logo.png",
+  docs: "https://blogroll.icl.moe",
+  managingEditor: "idealclover",
+  webMaster: "idealclover",
+  copyright: "2022 idealclover",
+  language: "cn",
+  pubDate: dataJson[0].pubDate,
+  ttl: "60",
+});
+
+// 其他相关配置
 const readmeMdPath = "./README.md";
 const opmlJsonPath = "./web/src/assets/opml.json";
 const dataJsonPath = "./web/src/assets/data.json";
-const maxDataJsonItemsNumberForWeb = 100; // 保存前 100 项
-const maxDataJsonItemsNumberForRSS = 40; // 对RSS保存前 40 项
 const opmlXmlPath = "./web/public/opml.xml";
 const rssXmlPath = "./web/public/rss.xml";
 const opmlXmlContentOp =
@@ -24,6 +40,7 @@ const opmlXmlContentEd = "\n  </body>\n</opml>";
 // 解析 README 中的表格，转为 JSON
 const pattern = /\| *([^\|]*) *\| *(http[^\|]*) *\| *(http[^\|]*) *\|/g;
 const readmeMdContent = fs.readFileSync(readmeMdPath, { encoding: "utf-8" });
+
 // 生成 opml.json
 const opmlJson = [];
 let resultArray;
@@ -34,6 +51,7 @@ while ((resultArray = pattern.exec(readmeMdContent)) !== null) {
     htmlUrl: resultArray[3].trim(),
   });
 }
+
 // 保存 opml.json 和 opml.xml
 fs.writeFileSync(opmlJsonPath, JSON.stringify(opmlJson, null, 2), {
   encoding: "utf-8",
@@ -98,7 +116,7 @@ fs.writeFileSync(opmlXmlPath, opmlXmlContent, { encoding: "utf-8" });
 
   const dataJsonSlicedForWeb = dataJsonSliced
     .slice(0, Math.min(maxDataJsonItemsNumberForWeb, dataJson.length))
-    .map(({summary, ...rest}) => {
+    .map(({ summary, ...rest }) => {
       return rest;
     });
   const dataJsonSlicedForRSS = dataJsonSliced.slice(
@@ -114,22 +132,6 @@ fs.writeFileSync(opmlXmlPath, opmlXmlContent, { encoding: "utf-8" });
       encoding: "utf-8",
     }
   );
-
-  // 生成 RSS 文件
-  var feed = new RSS({
-    title: "idealclover Blogroll",
-    description: "翠翠和他的朋友们的blog，不代表翠翠本人观点",
-    feed_url: "https://blogroll.icl.moe/rss.xml",
-    site_url: "https://blogroll.icl.moe/",
-    image_url: "https://blogroll.icl.moe/assets/logo.81fa7aa3.png",
-    docs: "https://blogroll.icl.moe",
-    managingEditor: "idealclover",
-    webMaster: "idealclover",
-    copyright: "2022 idealclover",
-    language: "cn",
-    pubDate: dataJson[0].pubDate,
-    ttl: "60",
-  });
 
   //整理 RSS 数据
   for (let item of dataJsonSlicedForRSS) {

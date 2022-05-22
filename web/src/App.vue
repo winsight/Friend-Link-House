@@ -9,7 +9,7 @@ import opmlJson from "./assets/opml.json";
     <div id="header-inner">
       <span id="logo-left">
         <img id="logo" src="./assets/logo.png" alt="Logo" />
-        <span id="logo-text">idealclover Blogroll</span>
+        <span id="logo-text">{{ title }}</span>
       </span>
       <a
         id="logo-right"
@@ -20,6 +20,7 @@ import opmlJson from "./assets/opml.json";
         <span id="logo-text">GitHub</span>
       </a>
     </div>
+    <div id="banner">{{ info }}</div>
   </header>
 
   <div id="container">
@@ -63,7 +64,7 @@ import opmlJson from "./assets/opml.json";
     <aside>
       <div id="sidebar">
         <div id="sidebar-content">
-          <div class="info">收录友链博客文章，不代表翠翠本人观点</div>
+          <div class="list">{{ list }}</div>
           <template v-for="item in opmlJson">
             <BlogInfoCard :props="item" />
           </template>
@@ -75,6 +76,14 @@ import opmlJson from "./assets/opml.json";
 
 <script>
 export default {
+  data() {
+    return {
+      // TODO: 需修改的页面配置
+      title: "idealclover 友链屋",
+      info: "仅收录友链博客文章，不代表翠翠本人观点",
+      list: "友链列表"
+    };
+  },
   mounted() {
     var imgs = document.getElementsByTagName("img");
     for (var i = 0; i < imgs.length; i++) {
@@ -188,6 +197,6 @@ export default {
 }
 
 .info {
-  color: grey
+  color: grey;
 }
 </style>

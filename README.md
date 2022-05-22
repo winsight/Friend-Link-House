@@ -36,7 +36,7 @@
 
 最重要的是先配置 CloudFlare，让整个链路先跑起来，之后的具体代码再怎么改都来得及。
 
-CloudFlare 的网站在 [这里]()，注册账号之后先在左侧选中 `workers`， 注册一个 workers
+CloudFlare 的网站在 [这里](https://cloudflare.com/)，注册账号之后先在左侧选中 `workers`， 注册一个 workers
 
 然后在 [这里](https://dash.cloudflare.com/profile/api-tokens) 注册一个 api 密钥，并且在你 fork 的 GitHub 仓库中 `Settings` 的 `Secrets` 里添加一个叫 `CF_WORKERS_TOKEN` 的密钥，把刚刚申请的 api 密钥添加进去
 
@@ -50,9 +50,13 @@ CloudFlare 的网站在 [这里]()，注册账号之后先在左侧选中 `worke
 
 更便捷的配置化功能什么的，接下来交给学弟实现吧。
 
-* 修改获取的链接：直接修改这个 README.me 中下方的表格就可以了
-* 修改 logo 等其他前端展现：App.vue
-* 修改自动生成的 RSS 信息：index.js
+* 修改获取的链接：直接修改这个 README.md 中下方的表格就可以了
+* 修改 logo 等其他前端展现（已标记TODO）
+    * ./web/public/favicon.ico -- 网站 icon
+    * ./src/assets/logo.png -- 页内显示 logo
+    * ./src/index.html -- 页面 title
+    * ./src/APP.vue -- 页内标题及 banner 文案
+* 修改自动生成的 RSS 信息（已标记TODO）：index.js
 
 在本地想部署起来的话，直接 clone 你自己 fork 出的仓库到本地，然后作为标准 npm 项目去部署
 

@@ -140,6 +140,15 @@ a:hover {
   margin-bottom: 20px;
 }
 
+#banner {
+  align-items: center;
+  background-color: #aeb5bc;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
 #header-inner {
   width: 1200px;
   padding-left: 30px;
@@ -193,7 +202,10 @@ a:hover {
   }
 
   #sidebar {
+    margin-top: 50px;
     float: none;
-    display: none;
+    width: auto;
+    background-color: #f6f6f6;
+    /* display: none; */
   }
 }
