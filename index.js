@@ -21,7 +21,6 @@ var feed = new RSS({
   webMaster: "idealclover",
   copyright: "2022 idealclover",
   language: "cn",
-  pubDate: dataJson[0].pubDate,
   ttl: "60",
 });
 
@@ -132,6 +131,8 @@ fs.writeFileSync(opmlXmlPath, opmlXmlContent, { encoding: "utf-8" });
       encoding: "utf-8",
     }
   );
+
+  feed.pubDate = dataJson[0].pubDate;
 
   //整理 RSS 数据
   for (let item of dataJsonSlicedForRSS) {
