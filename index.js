@@ -2,7 +2,7 @@
 const fs = require("fs");
 // 引入 RSS 解析第三方包
 const Parser = require("rss-parser");
-const parser = new Parser({timeout: 6000});
+const parser = new Parser({ timeout: 6000 });
 // 引入 RSS 生成器
 const RSS = require("rss");
 // const HttpsProxyAgent = require("https-proxy-agent");
@@ -77,12 +77,13 @@ async function fetchWithTimeout(resource, options = {}) {
     try {
       // 确认网站是否可以访问
       const response = await fetchWithTimeout(meta.htmlUrl);
-      if (response.ok) {
+      const whiteList = ["Sukka"];
+      if (response.ok || whiteList.includes(meta["title"])) {
         meta.status = "active";
       } else {
         meta.status = "lost";
         console.log("网络异常-未成功访问网站-404: " + meta.title);
-        throw('404');
+        throw "404";
       }
 
       try {
@@ -153,7 +154,7 @@ async function fetchWithTimeout(resource, options = {}) {
   const dataJson = [];
 
   for (const lineJson of metaJson) {
-    if(lineJson.xmlUrl == '') {
+    if (lineJson.xmlUrl == "") {
       continue;
     }
 
