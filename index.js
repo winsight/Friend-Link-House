@@ -9,7 +9,7 @@ const RSS = require("rss");
 
 // TODO: 需要重点关注和修改的配置
 const opmlXmlContentTitle = "idealclover Blogroll";
-const maxDataJsonItemsNumberForWeb = 100; // 保存前 100 项
+const maxDataJsonItemsNumberForWeb = 120; // 保存前 120 项
 const maxDataJsonItemsNumberForRSS = 40; // 对RSS保存前 40 项
 var feed = new RSS({
   title: "idealclover 友链屋",

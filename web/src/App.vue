@@ -65,8 +65,33 @@ import opmlJson from "./assets/opml.json";
       <div id="sidebar">
         <div id="sidebar-content">
           <div class="list">{{ list }}</div>
-          <template v-for="item in opmlJson">
-            <BlogInfoCard :props="item" />
+          <template v-for="(item, index) in opmlJson">
+            <BlogInfoCard
+              :props="item"
+              :key="index"
+              v-if="item['status'] == 'active' && item['xmlUrl'] != ''"
+            />
+          </template>
+          <template v-for="(item, index) in opmlJson">
+            <BlogInfoCard
+              :props="item"
+              :key="index"
+              v-if="item['status'] == 'active' && item['xmlUrl'] == ''"
+            />
+          </template>
+          <template v-for="(item, index) in opmlJson">
+            <BlogInfoCard
+              :props="item"
+              :key="index"
+              v-if="item['status'] == 'lost' && item['xmlUrl'] != ''"
+            />
+          </template>
+          <template v-for="(item, index) in opmlJson">
+            <BlogInfoCard
+              :props="item"
+              :key="index"
+              v-if="item['status'] == 'lost' && item['xmlUrl'] == ''"
+            />
           </template>
         </div>
       </div>
@@ -81,7 +106,7 @@ export default {
       // TODO: 需修改的页面配置
       title: "idealclover 友链屋",
       info: "仅收录友链博客文章，不代表翠翠本人观点",
-      list: "友链列表"
+      list: "友链列表",
     };
   },
   mounted() {

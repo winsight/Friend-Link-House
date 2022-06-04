@@ -2,18 +2,34 @@
 defineProps({
   props: {
     type: Object,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 </script>
 
 <template>
   <a :key="props.htmlUrl" :href="props.htmlUrl" target="_blank">
-    <p class="title">{{ props.title }}</p>
-    <span
-      style="display: -webkit-box; font-size: 13px; height: 18px; line-height: 18px; color: #999; word-break: break-all; text-overflow: ellipsis; overflow: hidden; -webkit-line-clamp: 1; -webkit-box-orient: vertical;"
+    <p
+      class="title"
+      :style="'color:' + (props.xmlUrl == '' ? 'grey;' : 'black;') + 'text-decoration:' + (props.status == 'active' ? 'none;': 'line-through;')"
     >
-      <span style="display: inline-flex; align-items: center;">
+      {{ props.title }}
+    </p>
+    <span
+      style="
+        display: -webkit-box;
+        font-size: 13px;
+        height: 18px;
+        line-height: 18px;
+        color: #999;
+        word-break: break-all;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      "
+    >
+      <span style="display: inline-flex; align-items: center">
         <svg
           class="Zi Zi--InsertLink"
           fill="currentColor"
