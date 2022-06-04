@@ -2,7 +2,7 @@
 const fs = require("fs");
 // 引入 RSS 解析第三方包
 const Parser = require("rss-parser");
-const parser = new Parser();
+const parser = new Parser({timeout: 6000});
 // 引入 RSS 生成器
 const RSS = require("rss");
 // const HttpsProxyAgent = require("https-proxy-agent");
@@ -40,7 +40,7 @@ const opmlXmlContentEd = "\n  </body>\n</opml>";
 
 // 解析 README 中的表格，转为 JSON
 const pattern =
-  /\| *([^\|]*) *\| *(http[^\|]*) *\| *([^\| \n]*) *\| *([^\| \n]*) *\| *([^\| \n]*) *\| *([^\| \n]*) *\|\n/g;
+  /\| *([^\|]*) *\| *(http[^\|]*) *\| *([^\|\n]*) *\| *([^\| \n]*) *\| *([^\| \n]*) *\| *([^\| \n]*) *\|\n/g;
 const readmeMdContent = fs.readFileSync(readmeMdPath, { encoding: "utf-8" });
 
 const metaJson = [];
@@ -152,7 +152,7 @@ async function fetchWithTimeout(resource, options = {}) {
   // 用于存储各项数据
   const dataJson = [];
 
-  for (const lineJson of opmlJson) {
+  for (const lineJson of metaJson) {
     if(lineJson.xmlUrl == '') {
       continue;
     }
@@ -160,6 +160,7 @@ async function fetchWithTimeout(resource, options = {}) {
     try {
       // 读取 RSS 的具体内容
       const feed = await parser.parseURL(lineJson.xmlUrl);
+      console.log("xmlUrl: " + lineJson.xmlUrl);
 
       // 数组合并
       dataJson.push.apply(
