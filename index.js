@@ -27,9 +27,9 @@ var feed = new RSS({
 
 // 其他相关配置
 const readmeMdPath = "./README.md";
-const opmlJsonPath = "./web/src/assets/opml.json";
-const dataJsonPath = "./web/src/assets/data.json";
-const linkListJsonPath = "./web/src/assets/linkList.json";
+const opmlJsonPath = "./web/public/opml.json";
+const dataJsonPath = "./web/public/data.json";
+const linkListJsonPath = "./web/public/linkList.json";
 const opmlXmlPath = "./web/public/opml.xml";
 const rssXmlPath = "./web/public/rss.xml";
 const opmlXmlContentOp =
