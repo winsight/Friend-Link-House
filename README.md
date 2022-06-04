@@ -50,13 +50,13 @@ CloudFlare 的网站在 [这里](https://cloudflare.com/)，注册账号之后�
 
 更便捷的配置化功能什么的，接下来交给学弟实现吧。
 
-* 修改获取的链接：直接修改这个 README.md 中下方的表格就可以了
-* 修改 logo 等其他前端展现（已标记TODO）
-    * ./web/public/favicon.ico -- 网站 icon
-    * ./src/assets/logo.png -- 页内显示 logo
-    * ./src/index.html -- 页面 title
-    * ./src/APP.vue -- 页内标题及 banner 文案
-* 修改自动生成的 RSS 信息（已标记TODO）：index.js
+- 修改获取的链接：直接修改这个 README.md 中下方的表格就可以了
+- 修改 logo 等其他前端展现（已标记 TODO）
+  - ./web/public/favicon.ico -- 网站 icon
+  - ./src/assets/logo.png -- 页内显示 logo
+  - ./src/index.html -- 页面 title
+  - ./src/APP.vue -- 页内标题及 banner 文案
+- 修改自动生成的 RSS 信息（已标记 TODO）：index.js
 
 在本地想部署起来的话，直接 clone 你自己 fork 出的仓库到本地，然后作为标准 npm 项目去部署
 
@@ -87,49 +87,79 @@ npm run build
 
 ## 傻翠的朋友 list
 
-| Name               | RSS                                   | HTML                        |
-| ------------------ | ------------------------------------- | --------------------------- |
-| Idealclover's Blog | https://idealclover.top/feed          | https://idealclover.top/    |
-| ZGQ's Blog         | https://blog.izgq.net/feed            | https://blog.izgq.net/      |
-| bus1996            | https://bus1996.me/feed               | https://bus1996.me/         |
-| HiKi               | https://www.aneureka.cn/atom.xml      | https://www.aneureka.cn/    |
-| lizhihao6          | https://lizhihao6.online/feed         | https://lizhihao6.online/   |
-| DIYGod             | https://diygod.me/atom.xml            | https://diygod.me/          |
-| Tianyun Zhang      | https://doowzs.com/rss.xml            | https://doowzs.com/         |
-| 鹏鹏               | https://blog.chper.cn/feed/           | http://blog.chper.cn/       |
-| 冰凌胧月的小窝     | https://imiku.me/index.xml            | https://imiku.me            |
-| SimpleZero         | https://mikuac.com/feed/              | https://mikuac.com          |
-| VicBlog            | https://ddadaal.me/rss.xml            | https://ddadaal.me/         |
-| Literature         | https://lizhihao6.online/feed         | https://www.literature.hk   |
-| 青空之蓝           | https://blog.ixk.me/rss.xml           | https://www.ixk.me          |
-| 樱花庄的白猫       | https://2heng.xin/feed                | https://2heng.xin           |
-| 辣椒の酱           | https://removeif.github.io/atom.xml   | https://removeif.github.io/ |
-| Domon              | https://www.domon.cn/rss/             | https://www.domon.cn        |
-| SangSir            | https://sangsir.com/feed              | https://sangsir.com/        |
-| 恶魔菌の记事簿     | https://meow3.family.blog/feed/       | https://meow3.family.blog/  |
-| 蓝小柠的博客       | https://www.bleshi.com/feed/          | https://www.bleshi.com/     |
-| 宇宙よりも遠い場所 | https://kirainmoe.com/index.xml       | https://kirainmoe.com/      |
-| beyondstars        | https://exploro.one/feed/atom         | https://beyondstars.xyz/    |
-| Sukka              | https://blog.skk.moe/rss.xml          | https://skk.moe/            |
-| fengkx             | https://www.fengkx.top/atom.xml       | https://www.fengkx.top/     |
-| JosePhilo          | https://josephilo.com/feed/           | https://josephilo.com       |
-| ChrAlpha 的幻想乡  | https://blog.ichr.me/atom.xml         | https://chralpha.com        |
-| Spencer Woo        | https://spencerwoo.com/feed           | https://spencerwoo.com/     |
-| 木子的博客         | https://blog.k8s.li/atom.xml          | https://blog.k8s.li         |
-| c0sMx              | https://www.c0smx.com/feed/           | https://www.c0smx.com       |
-| 云游君的小站       | https://www.yunyoujun.cn/atom.xml     | https://www.yunyoujun.cn    |
-| 猫鱼的小站         | https://2cat.net/?feed=rss2           | http://2cat.net             |
-| MiaoTony's 小窝    | https://miaotony.xyz/atom.xml         | https://miaotony.xyz        |
-| Timegg             | https://timegg.top/index.xml          | https://timegg.top/         |
-| Aengus Blog        | https://www.aengus.top/feed           | https://www.aengus.top/     |
-| klaus & laura      | https://klauslaura.cn/feed            | https://klauslaura.cn       |
-| Orangex4           | https://orangex4.cool/atom.xml        | https://orangex4.cool/      |
-| 小丁的个人博客     | https://tding.top/atom.xml            | https://tding.top/          |
-| 不鉴的安全屋       | https://ryushane.com/index.php/feed/  | https://ryushane.com/       |
-| 南雍随笔           | https://ydjsir.com.cn/atom.xml        | https://ydjsir.com.cn       |
-| Cyris              | https://sound.cyris.moe/atom.xml      | https://cyris.moe/          |
-| Dejavu's Blog      | https://www.dejavu.moe/index.xml      | https://www.dejavu.moe      |
-| 世说新语           | https://www.wangyurui.top/feed.xml    | https://www.wangyurui.top   |
-| itsNekoDeng        | https://dyfa.top/atom.xml             | https://dyfa.top/           |
-| LarryZhao          | http://feeds.feedburner.com/larryzhao | https://larryzhao.com/      |
-| SkyWT              | https://blog.skywt.cn/feed            | https://skywt.cn/           |
+| 名称               | 网站                           | 描述（选填）                   | 头像（默认为/favicon.ico）                                                                             | RSS（默认为/feed）                  | 分类      |
+| ------------------ | ------------------------------ | ------------------------------ | ------------------------------------------------------------------------------------------------------ | ----------------------------------- | --------- |
+| idealclover        | https://idealclover.top        | 是翠翠的个人网站！             |                                                                                                        |                                     | friend    |
+| NJU-LUG            | https://blogroll.njulug.org    |                                |                                                                                                        |                                     | friend    |
+| ZGQ's Blog         | https://blog.izgq.net          |                                |                                                                                                        |                                     | friend    |
+| bus1996            | https://bus1996.me             |                                | https://bus1996.me/assets/img/favicon.ico                                                              |                                     | friend    |
+| HiKi               | https://www.aneureka.cn        |                                | https://www.aneureka.cn/img/favicon.ico                                                                | https://www.aneureka.cn/atom.xml    | friend    |
+| lizhihao6          | https://lizhihao6.online       |                                |                                                                                                        |                                     | friend    |
+| Jennifer's Blog    | https://jyzhangchn.github.io   |                                | https://jyzhangchn.github.io/images/gavin.JPG                                                          |                                     | friend    |
+| DIYGod             | https://diygod.me              |                                |                                                                                                        | http://diygod.me/atom.xml           | net       |
+| 咸鱼不咸           | https://lcblog.cn              |                                |                                                                                                        |                                     | net       |
+| XZYMOE'S BLOG      | https://www.xzymoe.com         |                                |                                                                                                        |                                     | net       |
+| Tianyun Zhang      | https://doowzs.com             | doowzs's personal blog         |                                                                                                        |                                     | friend    |
+| 鹏鹏               | http://blog.chper.cn           |                                |                                                                                                        |                                     | friend    |
+| 净水流深.          | https://www.maorx.cn           | 这里是毛若昕的个人主页         |                                                                                                        |                                     | friend    |
+| 冰凌胧月的小窝     | https://imiku.me               | 聆听最初的声音，向往无尽的未来 |                                                                                                        | https://imiku.me/index.xml          | net       |
+| SimpleZero         | https://mikuac.com             |                                |                                                                                                        |                                     | net       |
+| VicBlog            | https://ddadaal.me             |                                | https://ddadaal.me/icons/icon-512x512.png                                                              | https://ddadaal.me/rss.xml          | friend    |
+| YSZ 的个人主页     | https://yangshangzhen.com      |                                |                                                                                                        |                                     | friend    |
+| 热铁盒             | https://rthsoftware.cn         |                                |                                                                                                        |                                     | friend    |
+| iznauy             | https://iznauy.github.io       |                                | https://avatars0.githubusercontent.com/u/22297856?s=400&u=9ac5d0437ef685b62e402ed130d67d589d234f0b&v=4 |                                     | friend    |
+| Literature         | https://www.literature.hk      |                                |                                                                                                        |                                     | net       |
+| JBESU              | https://jbesu.com              |                                |                                                                                                        |                                     | friend    |
+| 青空之蓝           | https://www.ixk.me             | 站在时光一端，回忆过往记忆。   |                                                                                                        | https://blog.ixk.me/rss.xml         | net       |
+| 樱花庄的白猫       | https://2heng.xin              |                                | https://2heng.xin/wp-content/static/favicon-96x96.png                                                  |                                     | net       |
+| 水风车             | https://blog.shuifengche.top   |                                |                                                                                                        |                                     | friend    |
+| 辣椒の酱           | https://removeif.github.io     |                                | https://removeif.github.io/images/avatar.jpg                                                           | https://removeif.github.io/atom.xml | net       |
+| BoBo               | http://byzeal.cn               | BOHC is just a blog of hechao  | http://byzeal.cn/images/bobo.ico                                                                       |                                     | friend    |
+| Domon              | https://www.domon.cn           | Life is Simple.                |                                                                                                        |                                     | net       |
+| BOHC!              | https://hewanyue.com           |                                |                                                                                                        |                                     | net       |
+| SangSir            | https://sangsir.com            |                                |                                                                                                        |                                     | net       |
+| 恶魔菌の记事簿     | https://meow3.family.blog      |                                |                                                                                                        |                                     | net       |
+| 蓝小柠的博客       | https://www.bleshi.com         | 是可爱的蓝孩子呀—              |                                                                                                        |                                     | net       |
+| 宇宙よりも遠い場所 | https://kirainmoe.com          |                                |                                                                                                        | https://kirainmoe.com/index.xml     | net       |
+| 小太の游乐园       | https://baka.fun               |                                |                                                                                                        |                                     | net       |
+| NoneData           | https://www.nonedata.com       |                                | https://www.nonedata.com/images/icons/favicon.ico                                                      | https://www.nonedata.com/rss.xml    | net       |
+| dna049             | https://dna049.com             |                                |                                                                                                        |                                     | net       |
+| Mengzelev's Blog   | https://mengzelev.github.io    |                                | https://mengzelev.github.io/assets/moe.ico                                                             |                                     | friend    |
+| beyondstars        | https://exploro.one            |                                |                                                                                                        | https://exploro.one/feed/atom       | supporter |
+| Sukka              | https://skk.moe                |                                |                                                                                                        | https://blog.skk.moe/rss.xml        | net       |
+| fengkx             | https://www.fengkx.top         |                                | https://www.fengkx.top/images/icons/icon-128x128.png                                                   | https://www.fengkx.top/atom.xml     | friend    |
+| JosePhilo          | https://josephilo.com          |                                |                                                                                                        |                                     | net       |
+| 蝉时雨             | https://chanshiyu.com          |                                |                                                                                                        |                                     | net       |
+| ChrAlpha 的幻想乡  | https://ichr.me/               |                                | https://cdn.jsdelivr.net/npm/ckx@0.0.1/favicon/favicon-32x32.png                                       | https://blog.ichr.me/atom.xml       | net       |
+| SpencerWoo         | https://spencerwoo.com         |                                |                                                                                                        |                                     | supporter |
+| LadderOperator     | https://ladderoperator.top     |                                | https://ladderoperator.top/img/favicon.jpg                                                             |                                     | friend    |
+| 木子的博客         | https://blog.k8s.li            |                                |                                                                                                        |                                     | net       |
+| c0sMx              | https://www.c0smx.com          |                                | https://c0smx.lajiya.cn/archives/LOGO/c0sMx.png                                                        |                                     | net       |
+| 云游君的小站       | https://www.yunyoujun.cn       |                                |                                                                                                        |                                     | net       |
+| 猫鱼的小站         | http://2cat.net                |                                | https://2cat.net/wp-content/uploads/2020/04/cropped-YZSC.TAOBAO.COM-24-192x192.png                     | https://2cat.net/?feed=rss2         | net       |
+| MiaoTony's 小窝    | https://miaotony.xyz           |                                |                                                                                                        | https://miaotony.xyz/atom.xml       | net       |
+| Timegg             | https://timegg.top             |                                | https://timegg.top/images/favicon.ico                                                                  | https://timegg.top/index.xml        | net       |
+| Aengus Blog        | https://www.aengus.top         |                                |                                                                                                        |                                     | net       |
+| ALID               | https://calmtime.github.io     |                                | https://calmtime.github.io/img/avatar-my.jpg                                                           |                                     | friend    |
+| klaus & laura      | https://klauslaura.cn          |                                |                                                                                                        |                                     | net       |
+| Kant               | https://www.deathfugue.com     |                                | https://s1.ax1x.com/2020/09/27/0kSwmq.jpg                                                              |                                     | net       |
+| Orangex4           | https://orangex4.cool          |                                | https://orangex4.cool/images/icons/profile.jpg                                                         | https://orangex4.cool/atom.xml      | friend    |
+| GeRongcun          | https://www.gerongcun.xyz/blog |                                |                                                                                                        |                                     | friend    |
+| 王荣胜             | https://sqdxwz.com             |                                |                                                                                                        |                                     | net       |
+| 小丁的个人博客     | https://tding.top              |                                | https://tding.top/images/avatar.webp                                                                   | https://tding.top/atom.xml          | net       |
+| 风景工作室         | https://aspire.studio          |                                |                                                                                                        |                                     | net       |
+| Manami             | https://www.manami.top         |                                |                                                                                                        |                                     | net       |
+| Oasis's Blog       | https://blog.imoasis.cn        |                                |                                                                                                        |                                     | net       |
+| 不鉴的安全屋       | https://ryushane.com           |                                |                                                                                                        |                                     | friend    |
+| 吴志成的博客       | https://hitigerzzz.github.io   |                                |                                                                                                        |                                     | friend    |
+| 南雍随笔           | https://ydjsir.com.cn          |                                | https://ydjsir.com.cn/img/avatar.png                                                                   | https://ydjsir.com.cn/atom.xml      | friend    |
+| Cyris              | https://cyris.moe              |                                | https://cyris.moe/images/favicon.ico                                                                   | https://sound.cyris.moe/atom.xml    | net       |
+| Dejavu's Blog      | https://www.dejavu.moe         |                                |                                                                                                        | https://www.dejavu.moe/index.xml    | net       |
+| remiliacn          | https://www.remiliacn.com      |                                | https://avatars.githubusercontent.com/remiliacn                                                        |                                     | net       |
+| 青鱼博客           | https://qingyu.me              |                                |                                                                                                        |                                     | friend    |
+| 世说新语           | https://www.wangyurui.top      |                                |                                                                                                        |                                     | net       |
+| 送报少年           | https://okarin.cn              |                                |                                                                                                        |                                     | net       |
+| itsNekoDeng        | https://dyfa.top               |                                | https://nekodeng.gitee.io/medias/avatar.jpg                                                            | https://dyfa.top/atom.xml           | net       |
+| LarryZhao          | https://larryzhao.com          |                                |                                                                                                        |                                     | friend    |
+| Pemp's Blog        | https://pemp.top               |                                | https://pemp.top/images/logo.jpg                                                                       |                                     | friend    |
+| SkyWT              | https://skywt.cn               |                                | https://blog.skywt.cn/usr/themes/Daydream/assets/img/avatar.png                                        |                                     | net       |

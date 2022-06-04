@@ -5,6 +5,7 @@ const Parser = require("rss-parser");
 const parser = new Parser();
 // 引入 RSS 生成器
 const RSS = require("rss");
+// const HttpsProxyAgent = require("https-proxy-agent");
 
 // TODO: 需要重点关注和修改的配置
 const opmlXmlContentTitle = "idealclover Blogroll";
@@ -28,6 +29,7 @@ var feed = new RSS({
 const readmeMdPath = "./README.md";
 const opmlJsonPath = "./web/src/assets/opml.json";
 const dataJsonPath = "./web/src/assets/data.json";
+const linkListJsonPath = "./web/src/assets/linkList.json";
 const opmlXmlPath = "./web/public/opml.xml";
 const rssXmlPath = "./web/public/rss.xml";
 const opmlXmlContentOp =
@@ -37,41 +39,124 @@ const opmlXmlContentOp =
 const opmlXmlContentEd = "\n  </body>\n</opml>";
 
 // 解析 README 中的表格，转为 JSON
-const pattern = /\| *([^\|]*) *\| *(http[^\|]*) *\| *(http[^\|]*) *\|/g;
+const pattern =
+  /\| *([^\|]*) *\| *(http[^\|]*) *\| *([^\| \n]*) *\| *([^\| \n]*) *\| *([^\| \n]*) *\| *([^\| \n]*) *\|\n/g;
 const readmeMdContent = fs.readFileSync(readmeMdPath, { encoding: "utf-8" });
 
-// 生成 opml.json
-const opmlJson = [];
+const metaJson = [];
 let resultArray;
 while ((resultArray = pattern.exec(readmeMdContent)) !== null) {
-  opmlJson.push({
+  metaJson.push({
     title: resultArray[1].trim(),
-    xmlUrl: resultArray[2].trim(),
-    htmlUrl: resultArray[3].trim(),
+    htmlUrl: resultArray[2].trim(),
+    description: resultArray[3].trim(),
+    avatarUrl: resultArray[4].trim(),
+    xmlUrl: resultArray[5].trim(),
+    category: resultArray[6].trim(),
   });
 }
 
-// 保存 opml.json 和 opml.xml
-fs.writeFileSync(opmlJsonPath, JSON.stringify(opmlJson, null, 2), {
-  encoding: "utf-8",
-});
-const opmlXmlContent =
-  opmlXmlContentOp +
-  opmlJson
-    .map(
-      (lineJson) =>
-        `  <outline title="${lineJson.title}" xmlUrl="${lineJson.xmlUrl}" htmlUrl="${lineJson.htmlUrl}" />\n`
-    )
-    .join("") +
-  opmlXmlContentEd;
-fs.writeFileSync(opmlXmlPath, opmlXmlContent, { encoding: "utf-8" });
+async function fetchWithTimeout(resource, options = {}) {
+  const { timeout = 6000 } = options;
+  // options["agent"] = new HttpsProxyAgent("http://127.0.0.1:1087");
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+  const response = await fetch(resource, {
+    ...options,
+    signal: controller.signal,
+  });
+  // clearTimeout(id);
+  return response;
+}
 
-// 异步处理
+// console.log(metaJson);
+
 (async () => {
+  const linkListJson = {};
+  for (const meta of metaJson) {
+    try {
+      // 确认网站是否可以访问
+      const response = await fetchWithTimeout(meta.htmlUrl);
+      if (response.ok) {
+        meta.status = "active";
+      } else {
+        meta.status = "lost";
+        console.log("网络异常-未成功访问网站-404: " + meta.title);
+        continue;
+      }
+
+      try {
+        // 获取网站默认URL
+        if (meta.avatarUrl == "") {
+          const favicon = meta.htmlUrl + "/favicon.ico";
+          const response = await fetchWithTimeout(favicon);
+          if (response.ok) {
+            meta.avatarUrl = favicon;
+          } else {
+            console.log("未成功获取图标: " + meta.title);
+          }
+        }
+        // 获取网站默认RSS
+        if (meta.xmlUrl == "") {
+          const feed = meta.htmlUrl + "/feed";
+          const response = await fetchWithTimeout(feed);
+          if (response.ok) {
+            meta.xmlUrl = feed;
+          } else {
+            console.log("未成功获取RSS: " + meta.title);
+          }
+        }
+      } catch (err) {
+        // console.log(err);
+        console.log("网络异常-未成功获取信息: " + meta.title);
+      }
+    } catch (err) {
+      // console.log(err);
+      meta.status = "lost";
+      console.log("网络异常-未成功访问网站-500: " + meta.title);
+    }
+    if (linkListJson[meta.category] == null) {
+      linkListJson[meta.category] = { active: [], lost: [] };
+    }
+    linkListJson[meta.category][meta.status].push(meta);
+  }
+
+  // 保存 linkList.json
+  // console.log(metaJson);
+  fs.writeFileSync(linkListJsonPath, JSON.stringify(linkListJson, null, 2), {
+    encoding: "utf-8",
+  });
+
+  // 生成 opml.json
+  const opmlJson = metaJson.map(
+    ({ avatarUrl, description, category, ...rest }) => {
+      return rest;
+    }
+  );
+
+  // 保存 opml.json 和 opml.xml
+  fs.writeFileSync(opmlJsonPath, JSON.stringify(opmlJson, null, 2), {
+    encoding: "utf-8",
+  });
+  const opmlXmlContent =
+    opmlXmlContentOp +
+    opmlJson
+      .map(
+        (lineJson) =>
+          `  <outline title="${lineJson.title}" xmlUrl="${lineJson.xmlUrl}" htmlUrl="${lineJson.htmlUrl}" />\n`
+      )
+      .join("") +
+    opmlXmlContentEd;
+  fs.writeFileSync(opmlXmlPath, opmlXmlContent, { encoding: "utf-8" });
+
   // 用于存储各项数据
   const dataJson = [];
 
   for (const lineJson of opmlJson) {
+    if(lineJson.xmlUrl == '') {
+      continue;
+    }
+
     try {
       // 读取 RSS 的具体内容
       const feed = await parser.parseURL(lineJson.xmlUrl);
