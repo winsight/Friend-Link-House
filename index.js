@@ -82,7 +82,7 @@ async function fetchWithTimeout(resource, options = {}) {
       } else {
         meta.status = "lost";
         console.log("网络异常-未成功访问网站-404: " + meta.title);
-        continue;
+        throw('404');
       }
 
       try {
