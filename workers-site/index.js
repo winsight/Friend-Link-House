@@ -51,6 +51,7 @@ async function handleEvent(event) {
     response.headers.set("X-Frame-Options", "DENY");
     response.headers.set("Referrer-Policy", "unsafe-url");
     response.headers.set("Feature-Policy", "none");
+    response.headers.set('Access-Control-Allow-Origin', "*");
 
     return response;
 
