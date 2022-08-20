@@ -249,7 +249,7 @@ function saveDataFiles(dataJson) {
   // 获取 RSS
   getRSSPromises = metaJson.map((source) => getRSS(source));
   const dataJson = [].concat.apply([], await Promise.all(getRSSPromises));
-
+  console.log(dataJson);
   saveMetaFiles(metaJson);
   saveDataFiles(dataJson);
 })();
