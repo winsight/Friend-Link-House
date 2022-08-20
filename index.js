@@ -2,7 +2,7 @@
 const fs = require("fs");
 // 引入 RSS 解析第三方包
 const Parser = require("rss-parser");
-const parser = new Parser({ timeout: 6000 });
+const parser = new Parser({ timeout: 12000 });
 // 引入 RSS 生成器
 const RSS = require("rss");
 // const HttpsProxyAgent = require("https-proxy-agent");
@@ -57,10 +57,10 @@ while ((resultArray = pattern.exec(readmeMdContent)) !== null) {
 }
 
 async function fetchWithTimeout(resource, options = {}) {
-  // const { timeout = 6000 } = options;
+  // const { timeout = 12000 } = options;
   // options["agent"] = new HttpsProxyAgent("http://127.0.0.1:1087");
   const controller = new AbortController();
-  setTimeout(() => controller.abort(), 6000);
+  setTimeout(() => controller.abort(), 12000);
   const response = await fetch(resource, {
     ...options,
     signal: controller.signal,
