@@ -220,6 +220,7 @@ function saveDataFiles(dataJson) {
     }
   );
 
+  console.log(dataJson[0]);
   feed.pubDate = dataJson[0].pubDate;
 
   //整理 RSS 数据
