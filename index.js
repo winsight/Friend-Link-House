@@ -6,8 +6,10 @@ const Parser = require("rss-parser");
 const RSS = require("rss");
 // HTTP 代理包
 // const HttpsProxyAgent = require("https-proxy-agent");
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+// const fetch = (...args) =>
+//   import("node-fetch").then(({ default: fetch }) => fetch(...args));
+
+const timeoutms = 20000;
 
 // 源文件配置
 const readmeMdPath = "./README.md";
@@ -48,10 +50,10 @@ const linkListJsonPath = "./web/public/linkList.json";
 const whiteList = ["Sukka"];
 
 async function fetchWithTimeout(resource, options = {}) {
-  const { timeout = 6000 } = options;
+  // const { timeout = timeoutms } = options;
   // options["agent"] = new HttpsProxyAgent("http://127.0.0.1:1087");
   const controller = new AbortController();
-  const id = setTimeout(() => controller.abort(), timeout);
+  const id = setTimeout(() => controller.abort(), timeoutms);
   const response = await fetch(resource, {
     ...options,
     signal: controller.signal,
@@ -131,7 +133,7 @@ async function getRSS(meta) {
 
   try {
     // 读取 RSS 的具体内容
-    var parser = new Parser({timeout: 6000});
+    var parser = new Parser({timeout: timeoutms});
     const feed = await parser.parseURL(meta.xmlUrl);
     console.log("xmlUrl: " + meta.xmlUrl);
 
