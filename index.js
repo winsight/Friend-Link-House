@@ -1,16 +1,20 @@
 // 文件读取包
 const fs = require("fs");
-// 引入 RSS 解析第三方包
+// RSS 解析包
 const Parser = require("rss-parser");
-const parser = new Parser({ timeout: 6000 });
-// 引入 RSS 生成器
+// RSS 生成器
 const RSS = require("rss");
+// HTTP 代理包
 // const HttpsProxyAgent = require("https-proxy-agent");
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-// TODO: 需要重点关注和修改的配置
-const opmlXmlContentTitle = "idealclover Blogroll";
-const maxDataJsonItemsNumberForWeb = 120; // 保存前 120 项
-const maxDataJsonItemsNumberForRSS = 40; // 对RSS保存前 40 项
+// 源文件配置
+const readmeMdPath = "./README.md";
+
+// RSS 配置
+const maxDataJsonItemsNumberForRSS = 40; // 对 RSS 保存前 40 项
+const rssXmlPath = "./web/public/rss.xml";
 var feed = new RSS({
   title: "idealclover 友链屋",
   description: "翠翠和他的朋友们的blog，不代表翠翠本人观点",
@@ -25,36 +29,23 @@ var feed = new RSS({
   ttl: "60",
 });
 
-// 其他相关配置
-const readmeMdPath = "./README.md";
+// opml 配置
 const opmlJsonPath = "./web/src/assets/opml.json";
-const dataJsonPath = "./web/src/assets/data.json";
-const linkListJsonPath = "./web/public/linkList.json";
 const opmlXmlPath = "./web/public/opml.xml";
-const rssXmlPath = "./web/public/rss.xml";
+const opmlXmlContentTitle = "idealclover Blogroll";
 const opmlXmlContentOp =
   '<opml version="2.0">\n  <head>\n    <title>' +
   opmlXmlContentTitle +
-  "</title>\n  </head>\n  <body>\n\n";
-const opmlXmlContentEd = "\n  </body>\n</opml>";
+  "</title>\n  </head>\n  <body>\n";
+const opmlXmlContentEd = "  </body>\n</opml>";
 
-// 解析 README 中的表格，转为 JSON
-const pattern =
-  /\| *([^\|]*) *\| *(http[^\|]*) *\| *([^\|\n]*) *\| *([^\| \n]*) *\| *([^\| \n]*) *\| *([^\| \n]*) *\|\n/g;
-const readmeMdContent = fs.readFileSync(readmeMdPath, { encoding: "utf-8" });
+// web 配置
+const maxDataJsonItemsNumberForWeb = 120; // 保存前 120 项
+const dataJsonPath = "./web/src/assets/data.json";
+const linkListJsonPath = "./web/public/linkList.json";
 
-const metaJson = [];
-let resultArray;
-while ((resultArray = pattern.exec(readmeMdContent)) !== null) {
-  metaJson.push({
-    title: resultArray[1].trim(),
-    htmlUrl: resultArray[2].trim(),
-    description: resultArray[3].trim(),
-    avatarUrl: resultArray[4].trim(),
-    xmlUrl: resultArray[5].trim(),
-    category: resultArray[6].trim(),
-  });
-}
+// 白名单：不检查是否允许访问
+const whiteList = ["Sukka"];
 
 async function fetchWithTimeout(resource, options = {}) {
   const { timeout = 6000 } = options;
@@ -65,66 +56,117 @@ async function fetchWithTimeout(resource, options = {}) {
     ...options,
     signal: controller.signal,
   });
-  // clearTimeout(id);
   return response;
 }
 
-// console.log(metaJson);
+function parseReadMe() {
+  // 解析 README 中的表格，转为 JSON
+  const pattern =
+    /\| *([^\|]*) *\| *(http[^\|]*) *\| *([^\|\n]*) *\| *([^\| \n]*) *\| *([^\| \n]*) *\| *([^\| \n]*) *\|\n/g;
+  const readmeMdContent = fs.readFileSync(readmeMdPath, { encoding: "utf-8" });
 
-(async () => {
-  const linkListJson = {};
-  for (const meta of metaJson) {
+  const metaJson = [];
+  let resultArray;
+  while ((resultArray = pattern.exec(readmeMdContent)) !== null) {
+    metaJson.push({
+      title: resultArray[1].trim(),
+      htmlUrl: resultArray[2].trim(),
+      description: resultArray[3].trim(),
+      avatarUrl: resultArray[4].trim(),
+      xmlUrl: resultArray[5].trim(),
+      category: resultArray[6].trim(),
+    });
+  }
+  return metaJson;
+}
+
+async function getIcon(meta) {
+  try {
+    // 确认网站是否可以访问
+    const response = await fetchWithTimeout(meta.htmlUrl);
+    if (response.ok || whiteList.includes(meta["title"])) {
+      meta.status = "active";
+    } else {
+      meta.status = "lost";
+      console.log("网络异常-未成功访问网站-404: " + meta.title);
+      throw "404";
+    }
+
     try {
-      // 确认网站是否可以访问
-      const response = await fetchWithTimeout(meta.htmlUrl);
-      const whiteList = ["Sukka"];
-      if (response.ok || whiteList.includes(meta["title"])) {
-        meta.status = "active";
-      } else {
-        meta.status = "lost";
-        console.log("网络异常-未成功访问网站-404: " + meta.title);
-        throw "404";
+      // 获取网站默认URL
+      if (meta.avatarUrl == "") {
+        const favicon = meta.htmlUrl + "/favicon.ico";
+        const response = await fetchWithTimeout(favicon);
+        if (response.ok) {
+          meta.avatarUrl = favicon;
+        } else {
+          console.log("未成功获取图标: " + meta.title);
+        }
       }
-
-      try {
-        // 获取网站默认URL
-        if (meta.avatarUrl == "") {
-          const favicon = meta.htmlUrl + "/favicon.ico";
-          const response = await fetchWithTimeout(favicon);
-          if (response.ok) {
-            meta.avatarUrl = favicon;
-          } else {
-            console.log("未成功获取图标: " + meta.title);
-          }
+      // 获取网站默认RSS
+      if (meta.xmlUrl == "") {
+        const feed = meta.htmlUrl + "/feed";
+        const response = await fetchWithTimeout(feed);
+        if (response.ok) {
+          meta.xmlUrl = feed;
+        } else {
+          console.log("未成功获取RSS: " + meta.title);
         }
-        // 获取网站默认RSS
-        if (meta.xmlUrl == "") {
-          const feed = meta.htmlUrl + "/feed";
-          const response = await fetchWithTimeout(feed);
-          if (response.ok) {
-            meta.xmlUrl = feed;
-          } else {
-            console.log("未成功获取RSS: " + meta.title);
-          }
-        }
-      } catch (err) {
-        // console.log(err);
-        console.log("网络异常-未成功获取信息: " + meta.title);
       }
     } catch (err) {
       // console.log(err);
-      meta.status = "lost";
-      console.log("网络异常-未成功访问网站-500: " + meta.title);
+      console.log("网络异常-未成功获取信息: " + meta.title);
     }
-    if (linkListJson[meta.category] == null) {
-      linkListJson[meta.category] = { active: [], lost: [] };
-    }
-    linkListJson[meta.category][meta.status].push(meta);
+  } catch (err) {
+    // console.log(err);
+    meta.status = "lost";
+    console.log("网络异常-未成功访问网站-500: " + meta.title);
+  }
+}
+
+async function getRSS(meta) {
+  if (meta.xmlUrl == "") {
+    return [];
   }
 
+  try {
+    // 读取 RSS 的具体内容
+    var parser = new Parser({timeout: 6000});
+    const feed = await parser.parseURL(meta.xmlUrl);
+    console.log("xmlUrl: " + meta.xmlUrl);
+
+    return feed.items
+      .filter((item) => item.title && item.content && item.pubDate)
+      .map((item) => {
+        const pubDate = new Date(item.pubDate);
+        return {
+          name: meta.title,
+          xmlUrl: meta.xmlUrl,
+          htmlUrl: meta.htmlUrl,
+          title: item.title,
+          link: item.link,
+          summary: item.summary ? item.summary : item.content,
+          pubDate: pubDate,
+          pubDateYYMMDD: pubDate.toISOString().split("T")[0],
+          pubDateMMDD: pubDate.toISOString().split("T")[0].slice(5),
+          pubDateYY: pubDate.toISOString().slice(0, 4),
+          pubDateMM: pubDate.toISOString().slice(5, 7),
+        };
+      });
+  } catch (err) {
+    // 网络超时，进行 Log 报告
+    console.log(err);
+    console.log("-------------------------");
+    console.log("xmlUrl: " + meta.xmlUrl);
+    console.log("-------------------------");
+    return [];
+  }
+}
+
+function saveMetaFiles(metaJson) {
   // 保存 linkList.json
   // console.log(metaJson);
-  fs.writeFileSync(linkListJsonPath, JSON.stringify(linkListJson, null, 2), {
+  fs.writeFileSync(linkListJsonPath, JSON.stringify(metaJson, null, 2), {
     encoding: "utf-8",
   });
 
@@ -144,55 +186,14 @@ async function fetchWithTimeout(resource, options = {}) {
     opmlJson
       .map(
         (lineJson) =>
-          `  <outline title="${lineJson.title}" xmlUrl="${lineJson.xmlUrl}" htmlUrl="${lineJson.htmlUrl}" />\n`
+          `    <outline title="${lineJson.title}" xmlUrl="${lineJson.xmlUrl}" htmlUrl="${lineJson.htmlUrl}" />\n`
       )
       .join("") +
     opmlXmlContentEd;
   fs.writeFileSync(opmlXmlPath, opmlXmlContent, { encoding: "utf-8" });
+}
 
-  // 用于存储各项数据
-  const dataJson = [];
-
-  for (const lineJson of metaJson) {
-    if (lineJson.xmlUrl == "") {
-      continue;
-    }
-
-    try {
-      // 读取 RSS 的具体内容
-      const feed = await parser.parseURL(lineJson.xmlUrl);
-      console.log("xmlUrl: " + lineJson.xmlUrl);
-
-      // 数组合并
-      dataJson.push.apply(
-        dataJson,
-        feed.items
-          .filter((item) => item.title && item.content && item.pubDate)
-          .map((item) => {
-            const pubDate = new Date(item.pubDate);
-            return {
-              name: lineJson.title,
-              xmlUrl: lineJson.xmlUrl,
-              htmlUrl: lineJson.htmlUrl,
-              title: item.title,
-              link: item.link,
-              summary: item.summary ? item.summary : item.content,
-              pubDate: pubDate,
-              pubDateYYMMDD: pubDate.toISOString().split("T")[0],
-              pubDateMMDD: pubDate.toISOString().split("T")[0].slice(5),
-              pubDateYY: pubDate.toISOString().slice(0, 4),
-              pubDateMM: pubDate.toISOString().slice(5, 7),
-            };
-          })
-      );
-    } catch (err) {
-      // 网络超时，进行 Log 报告
-      console.log(err);
-      console.log("-------------------------");
-      console.log("xmlUrl: " + lineJson.xmlUrl);
-      console.log("-------------------------");
-    }
-  }
+function saveDataFiles(dataJson) {
 
   // 按时间顺序排序
   dataJson.sort((itemA, itemB) => (itemA.pubDate < itemB.pubDate ? 1 : -1));
@@ -235,4 +236,19 @@ async function fetchWithTimeout(resource, options = {}) {
   // 保存 rss.xml 文件
   const rssXmlContent = feed.xml();
   fs.writeFileSync(rssXmlPath, rssXmlContent, { encoding: "utf-8" });
+}
+
+(async function () {
+  const metaJson = parseReadMe();
+  // 获取网站状态、图标信息
+  getIconPromises = metaJson.map((source) => getIcon(source));
+  await Promise.all(getIconPromises);
+  console.log(metaJson);
+
+  // 获取 RSS
+  getRSSPromises = metaJson.map((source) => getRSS(source));
+  const dataJson = [].concat.apply([], await Promise.all(getRSSPromises));
+
+  saveMetaFiles(metaJson);
+  saveDataFiles(dataJson);
 })();
