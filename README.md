@@ -90,6 +90,7 @@ npm run build
 | 名称               | 网站                           | 描述（选填）                   | 头像（默认为/favicon.ico）                                                                             | RSS（默认为/feed）                     | 分类      |
 | ------------------ | ------------------------------ | ------------------------------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------- | --------- |
 | idealclover        | https://idealclover.top        | 是翠翠的个人网站！             |                                                                                                        |                                        | friend    |
+| ZOZO | https://zozo.sswin.site | zozo的个人网站！ | | https://zozo.sswin.site/index.xml | friend |
 | NJU-LUG            | https://blogroll.njulug.org    |                                |                                                                                                        |                                        | friend    |
 | ZGQ's Blog         | https://blog.izgq.net          |                                |                                                                                                        |                                        | friend    |
 | bus1996            | https://bus1996.me             |                                | https://bus1996.me/assets/img/favicon.ico                                                              |                                        | friend    |
