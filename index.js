@@ -8,19 +8,19 @@ const RSS = require("rss");
 // const HttpsProxyAgent = require("https-proxy-agent");
 
 // TODO: 需要重点关注和修改的配置
-const opmlXmlContentTitle = "idealclover Blogroll";
+const opmlXmlContentTitle = "SSWIN Blogroll";
 const maxDataJsonItemsNumberForWeb = 120; // 保存前 120 项
 const maxDataJsonItemsNumberForRSS = 40; // 对RSS保存前 40 项
 var feed = new RSS({
-  title: "idealclover 友链屋",
-  description: "翠翠和他的朋友们的blog，不代表翠翠本人观点",
+  title: "SSWIN 友链屋",
+  description: "SSWIN和他的朋友们的blog，不代表SSWIN本人观点",
   feed_url: "https://blogroll.icl.moe/rss.xml",
   site_url: "https://blogroll.icl.moe/",
   image_url: "https://blogroll.icl.moe/assets/logo.png",
   docs: "https://blogroll.icl.moe",
-  managingEditor: "idealclover",
-  webMaster: "idealclover",
-  copyright: "2022 idealclover",
+  managingEditor: "SSWIN",
+  webMaster: "SSWIN",
+  copyright: "2022 SSWIN",
   language: "cn",
   ttl: "60",
 });

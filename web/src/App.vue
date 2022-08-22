@@ -104,8 +104,8 @@ export default {
   data() {
     return {
       // TODO: 需修改的页面配置
-      title: "idealclover 友链屋",
-      info: "仅收录友链博客文章，不代表翠翠本人观点",
+      title: "SSWIN 友链屋",
+      info: "仅收录友链博客文章，不代表SSWIN本人观点",
       list: "友链列表",
     };
   },
