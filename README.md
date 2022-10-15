@@ -91,6 +91,7 @@ npm run build
 | ------------------ | ------------------------------ | ------------------------------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------- | --------- |
 | idealclover        | https://idealclover.top        | 是翠翠的个人网站！             |                                                                                                        |                                        | friend    |
 | ZOZO | https://zozo.sswin.site | zozo的个人网站！ | | https://zozo.sswin.site/index.xml | friend |
+| Karl | https://karl.sswin.site | Karl’s Site | https://thispersondoesnotexist.com/image | https://karl.sswin.site/feed | Myself |
 | NJU-LUG            | https://blogroll.njulug.org    |                                |                                                                                                        |                                        | friend    |
 | ZGQ's Blog         | https://blog.izgq.net          |                                |                                                                                                        |                                        | friend    |
 | bus1996            | https://bus1996.me             |                                | https://bus1996.me/assets/img/favicon.ico                                                              |                                        | friend    |
