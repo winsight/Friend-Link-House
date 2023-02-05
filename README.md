@@ -85,12 +85,13 @@ npm run build
 
 项目基于 [NJU-LUG/Blogroll](https://github.com/nju-lug/blogroll)，采用 [MIT Licence](./LICENSE)
 
-## 傻翠的朋友 list
+## SS的朋友 list
 
 | 名称               | 网站                           | 描述（选填）                   | 头像（默认为/favicon.ico）                                                                             | RSS（默认为/feed）                     | 分类      |
 | ------------------ | ------------------------------ | ------------------------------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------- | --------- |
 | idealclover        | https://idealclover.top        | 是翠翠的个人网站！             |                                                                                                        |                                        | friend    |
 | ZOZO | https://zozo.sswin.site | zozo的个人网站！ | https://thispersondoesnotexist.com/image | https://zozo.sswin.site/index.xml | friend |
+| 繁星Blog | https://blog.emoao.com/ | 一个喜欢啥都瞎折腾的00后，拖延症晚期患者! | https://blog.emoao.com/feed/ |  |  |
 | Karl | https://karl.sswin.site | Karl’s Site | https://thispersondoesnotexist.com/image | https://karl.sswin.site/feed | Myself |
 | NJU-LUG            | https://blogroll.njulug.org    |                                |                                                                                                        |                                        | friend    |
 | ZGQ's Blog         | https://blog.izgq.net          |                                |                                                                                                        |                                        | friend    |
